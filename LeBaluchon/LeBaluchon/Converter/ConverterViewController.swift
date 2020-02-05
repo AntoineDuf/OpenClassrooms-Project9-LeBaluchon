@@ -8,33 +8,44 @@
 
 import UIKit
 
-class ConverterViewController: UIViewController {
+class ConverterViewController: UITableViewController {
     let converter = ConverterService()
     
-    @IBOutlet weak var firstField: UITextField!
-    @IBOutlet weak var secondField: UILabel!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var labelField: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
 }
 
 private extension ConverterViewController {
-    
     @IBAction func convertButton(_ sender: Any) {
         converter.getRate { (success, rate) in
-            guard success == true else {
+            guard success == true, let rate = rate else {
                 return
             }
-            self.convert(rate: rate!)
+            self.convert(rate: rate)
         }
     }
 }
 
 private extension ConverterViewController {
     func convert(rate: Float) {
-        let textFloat = Float(firstField.text!)!
+        guard let text = textField.text else { return self.alert(title: "Erreur", message: "Echec")}
+        guard let textFloat = Float(text) else { return self.alert(title: "Erreur", message: "Echec")}
         let result = textFloat * rate
-        secondField.text = String(format: "%.2f", result)
+            labelField.text = String(format: "%.2f", result)
+        }
+    }
+
+extension ConverterViewController {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 23)
+        let text = section == 0 ? "EUR" : "USD"
+        label.text = text
+        return label
     }
 }
