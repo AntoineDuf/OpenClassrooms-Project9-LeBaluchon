@@ -11,12 +11,16 @@ import UIKit
 class TranslatorViewController: UITableViewController {
     
     @IBOutlet private weak var frenchTextView: UITextView!
-    @IBOutlet private weak var usLabelField: UILabel!
+
+    @IBOutlet weak var usTraductionLabel: UILabel!
     
     var viewModel: TranslatorViewModel!
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewModel()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        frenchTextView.becomeFirstResponder()
     }
 }
 
@@ -44,7 +48,7 @@ private extension TranslatorViewController{
             guard let me = self else { return }
             DispatchQueue.main.async {
                 let text = translations.first?.translatedText
-                me.usLabelField.text = text
+                me.usTraductionLabel.text = text
             }
         }
     }
