@@ -104,7 +104,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="frenchTextView" destination="jGf-HT-gzy" id="7ev-R1-cXd"/>
-                        <outlet property="usLabelField" destination="1Qj-2b-1kA" id="PFs-cM-cQb"/>
+                        <outlet property="usTraductionLabel" destination="1Qj-2b-1kA" id="5v9-sd-Of9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOF-oS-a13" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
