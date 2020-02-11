@@ -11,8 +11,8 @@ import Foundation
 class TranslatorService {
     private static let translatorURL = URL(string: "https://translation.googleapis.com/language/translate/v2/")!
     
-    static func getTranslation(textToTranslate: String, callback: @escaping (Bool, TranslationDataClass?) -> Void) {
-        var request = URLRequest(url: translatorURL)
+    func getTranslation(textToTranslate: String, callback: @escaping (Bool, TranslationDataClass?) -> Void) {
+        var request = URLRequest(url: TranslatorService.translatorURL)
         request.httpMethod = "POST"
         
         let body = "key=AIzaSyDBysRiBCnIQm_Lyz9-G_RAyHuyo2P9Qfs&target=EN&q=\(textToTranslate)&format=text&source=fr"

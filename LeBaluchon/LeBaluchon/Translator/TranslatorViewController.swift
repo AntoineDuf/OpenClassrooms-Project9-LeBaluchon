@@ -10,17 +10,22 @@ import UIKit
 
 class TranslatorViewController: UITableViewController {
     
-    @IBOutlet weak var frenchTextView: UITextView!
-    @IBOutlet weak var usLabelField: UILabel!
+    @IBOutlet private weak var frenchTextView: UITextView!
+    @IBOutlet private weak var usLabelField: UILabel!
+    
+    var viewModel: TranslatorViewModel!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureViewModel()
+    }
 }
 
 extension TranslatorViewController {
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 23)
-        let text = section == 0 ? "Français" : "Anglais"
-        label.text = text
-        return label
+    override func tableView(
+        _ tableView: UITableView,
+        viewForHeaderInSection section: Int
+    ) -> UIView? {
+        viewModel.viewForHeader(in: section)
     }
 }
 
@@ -30,15 +35,16 @@ private extension TranslatorViewController{
     }
     
     func translate() {
-        guard let text = frenchTextView.text else {
-            return self.alert(title: "Erreur", message: "La traduction a échoué.")}
-        TranslatorService.getTranslation(textToTranslate: text){ (success, data) in
+        let text = frenchTextView.text
+        viewModel.translate(text: text)
+    }
+    
+    func configureViewModel() {
+        viewModel.translateHandler = { [weak self] translations in
+            guard let me = self else { return }
             DispatchQueue.main.async {
-                if success, let data = data {
-                    for translation in data.translations{
-                        self.usLabelField.text = translation.translatedText
-                    }
-                }
+                let text = translations.first?.translatedText
+                me.usLabelField.text = text
             }
         }
     }
