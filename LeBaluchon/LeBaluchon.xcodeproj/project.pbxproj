@@ -28,6 +28,8 @@
 		8B7A85B723DB41E0007F33DF /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7A85B623DB41E0007F33DF /* WeatherInfo.swift */; };
 		8BE8157A23E9B3F7009083E7 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE8157923E9B3F7009083E7 /* WeatherViewModel.swift */; };
 		8BE8157C23EB2C18009083E7 /* TranslationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE8157B23EB2C18009083E7 /* TranslationData.swift */; };
+		8BE8157F23EB58B2009083E7 /* TranslatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE8157E23EB58B2009083E7 /* TranslatorViewModel.swift */; };
+		8BE8158223EB5AC2009083E7 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BE8158123EB5AC2009083E7 /* MainTabBarController.swift */; };
 		8E323F92A0207BEAB6A97548 /* Pods_LeBaluchon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20562046A0DFEF0F07E544CA /* Pods_LeBaluchon.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +80,8 @@
 		8B7A85B623DB41E0007F33DF /* WeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
 		8BE8157923E9B3F7009083E7 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		8BE8157B23EB2C18009083E7 /* TranslationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationData.swift; sourceTree = "<group>"; };
+		8BE8157E23EB58B2009083E7 /* TranslatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatorViewModel.swift; sourceTree = "<group>"; };
+		8BE8158123EB5AC2009083E7 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		C617249B81F0EC0EE349129F /* Pods-LeBaluchon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LeBaluchon.release.xcconfig"; path = "Pods/Target Support Files/Pods-LeBaluchon/Pods-LeBaluchon.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,6 +153,7 @@
 		8B37B2A323D8640700F53DB7 /* LeBaluchon */ = {
 			isa = PBXGroup;
 			children = (
+				8BE8157D23EB587F009083E7 /* Model */,
 				8B59463B23E217B800E48841 /* Extensions */,
 				8B37B2B223D8640900F53DB7 /* Info.plist */,
 				8B37B2D823D8653C00F53DB7 /* Networking */,
@@ -156,6 +161,7 @@
 				8B37B2EC23D8C0F500F53DB7 /* Translator */,
 				8B37B2EB23D8C0EB00F53DB7 /* Weather */,
 				8B37B2D723D864F800F53DB7 /* View */,
+				8BE8158023EB5A7E009083E7 /* Main */,
 				8B37B2EE23D8C1FF00F53DB7 /* Resouces */,
 				8B37B2A423D8640700F53DB7 /* AppDelegate.swift */,
 			);
@@ -183,7 +189,6 @@
 		8B37B2D723D864F800F53DB7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8B37B2AA23D8640700F53DB7 /* Main.storyboard */,
 				8B37B2AF23D8640900F53DB7 /* LaunchScreen.storyboard */,
 			);
 			path = View;
@@ -205,7 +210,6 @@
 				8BE8157923E9B3F7009083E7 /* WeatherViewModel.swift */,
 				8B37B2D923D8735100F53DB7 /* WeatherViewController.swift */,
 				8B37B2EF23D8C2E600F53DB7 /* Weather.storyboard */,
-				8B7A85B623DB41E0007F33DF /* WeatherInfo.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -215,7 +219,7 @@
 			children = (
 				8B37B2E123D8870F00F53DB7 /* TranslatorViewController.swift */,
 				8B37B2F123DB04CF00F53DB7 /* Translator.storyboard */,
-				8BE8157B23EB2C18009083E7 /* TranslationData.swift */,
+				8BE8157E23EB58B2009083E7 /* TranslatorViewModel.swift */,
 			);
 			path = Translator;
 			sourceTree = "<group>";
@@ -225,7 +229,6 @@
 			children = (
 				8B37B2DD23D886CD00F53DB7 /* ConverterViewController.swift */,
 				8B7A85B423DB079D007F33DF /* Converter.storyboard */,
-				8B6BF7BD23E1CF7100A0191F /* CurrencyInfo.swift */,
 			);
 			path = Converter;
 			sourceTree = "<group>";
@@ -245,6 +248,25 @@
 				8B59463C23E217E400E48841 /* UIViewController+UIAlertController.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8BE8157D23EB587F009083E7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8BE8157B23EB2C18009083E7 /* TranslationData.swift */,
+				8B7A85B623DB41E0007F33DF /* WeatherInfo.swift */,
+				8B6BF7BD23E1CF7100A0191F /* CurrencyInfo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8BE8158023EB5A7E009083E7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				8B37B2AA23D8640700F53DB7 /* Main.storyboard */,
+				8BE8158123EB5AC2009083E7 /* MainTabBarController.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,8 +436,10 @@
 				8BE8157C23EB2C18009083E7 /* TranslationData.swift in Sources */,
 				8B37B2DA23D8735100F53DB7 /* WeatherViewController.swift in Sources */,
 				8B37B2EA23D8B54400F53DB7 /* TranslatorService.swift in Sources */,
+				8BE8158223EB5AC2009083E7 /* MainTabBarController.swift in Sources */,
 				8B37B2E823D8B53000F53DB7 /* ConverterService.swift in Sources */,
 				8B37B2DE23D886CD00F53DB7 /* ConverterViewController.swift in Sources */,
+				8BE8157F23EB58B2009083E7 /* TranslatorViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
