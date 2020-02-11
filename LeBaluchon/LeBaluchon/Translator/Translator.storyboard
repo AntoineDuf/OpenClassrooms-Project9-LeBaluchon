@@ -35,6 +35,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="J3t-w0-bR9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <gestureRecognizers/>
                         <sections>
                             <tableViewSection headerTitle="Français" id="NIC-Wt-sId">
                                 <cells>
@@ -51,6 +52,9 @@
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="1Nk-P1-P6e" id="4nZ-1M-uCv"/>
+                                                    </connections>
                                                 </textView>
                                             </subviews>
                                             <constraints>
@@ -93,6 +97,7 @@
                         <connections>
                             <outlet property="dataSource" destination="1Nk-P1-P6e" id="JLW-YX-FGl"/>
                             <outlet property="delegate" destination="1Nk-P1-P6e" id="M6p-qy-iga"/>
+                            <outletCollection property="gestureRecognizers" destination="TAr-qh-Rfi" appends="YES" id="zaa-6D-7dr"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Traducteur" id="fEG-zy-dWW">
@@ -108,6 +113,11 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOF-oS-a13" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="TAr-qh-Rfi">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="1Nk-P1-P6e" id="WVV-oX-aTA"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="308.69565217391306" y="782.8125"/>
         </scene>

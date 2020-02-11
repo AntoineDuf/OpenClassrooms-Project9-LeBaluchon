@@ -18,9 +18,13 @@ class TranslatorViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewModel()
+        frenchTextView.returnKeyType = UIReturnKeyType.done
     }
     override func viewDidAppear(_ animated: Bool) {
         frenchTextView.becomeFirstResponder()
+    }
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        frenchTextView.resignFirstResponder()
     }
 }
 
@@ -50,6 +54,15 @@ private extension TranslatorViewController{
                 let text = translations.first?.translatedText
                 me.usTraductionLabel.text = text
             }
+        }
+    }
+}
+
+extension TranslatorViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        if frenchTextView.text.last == "\n" { //Check if last char is newline
+            frenchTextView.text.removeLast() //Remove newline
+            frenchTextView.resignFirstResponder() //Dismiss keyboard
         }
     }
 }
