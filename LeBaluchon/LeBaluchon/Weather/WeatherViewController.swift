@@ -28,6 +28,7 @@ class WeatherViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configurePullToRefresh()
 //        requestWeather(city: city[0])
 //        requestWeather(city: city[1])
         viewModel.refreshWeather(city: city[0])
@@ -88,4 +89,21 @@ extension WeatherViewController {
     }
 }
 
-
+private extension WeatherViewController {
+    func configurePullToRefresh() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(
+            self,
+            action: #selector(getWeather),
+            for: .valueChanged
+        )
+        self.refreshControl = refreshControl
+    }
+    
+    @objc func getWeather() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.refreshControl?.endRefreshing()
+        }
+        
+    }
+}
