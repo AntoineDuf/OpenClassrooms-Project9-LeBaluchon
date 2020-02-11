@@ -215,13 +215,7 @@
                             <outlet property="delegate" destination="xNk-4e-kM5" id="73E-Kw-faC"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Météo" id="MiK-YG-Pkv">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="IconRefresh" id="jGz-Ke-q0x">
-                            <connections>
-                                <action selector="refreshButton:" destination="xNk-4e-kM5" id="bc9-Mv-PIL"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Météo" id="MiK-YG-Pkv"/>
                     <connections>
                         <outlet property="arrowDirectionFirstCity" destination="TJO-jk-eVQ" id="Q8e-FV-N2N"/>
                         <outlet property="arrowDirectionSecondCity" destination="UVi-wP-7yD" id="bbC-3Q-nA5"/>
@@ -245,7 +239,6 @@
     <resources>
         <image name="IconCompassS" width="35" height="35"/>
         <image name="IconCompassS-O" width="35" height="35"/>
-        <image name="IconRefresh" width="25" height="25"/>
         <image name="IconWeather" width="25" height="25"/>
         <image name="cloudyDay" width="100" height="90"/>
     </resources>

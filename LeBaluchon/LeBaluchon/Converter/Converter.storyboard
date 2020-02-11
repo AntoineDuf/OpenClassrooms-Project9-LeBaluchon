@@ -38,41 +38,51 @@
                         <sections>
                             <tableViewSection headerTitle="EUR" id="6ym-Qt-8OG">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="fe7-ai-7Dc">
-                                        <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="44" id="fe7-ai-7Dc">
+                                        <rect key="frame" x="20" y="55.5" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fe7-ai-7Dc" id="34O-DM-DRb">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ex: 50" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="se0-JR-Kgg">
-                                                    <rect key="frame" x="20" y="4" width="334" height="34"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Exemple: 50." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="se0-JR-Kgg">
+                                                    <rect key="frame" x="16" y="0.0" width="342" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 </textField>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="se0-JR-Kgg" secondAttribute="trailing" constant="16" id="DJ7-AW-gfD"/>
+                                                <constraint firstAttribute="bottom" secondItem="se0-JR-Kgg" secondAttribute="bottom" id="NBJ-OB-ptv"/>
+                                                <constraint firstItem="se0-JR-Kgg" firstAttribute="top" secondItem="34O-DM-DRb" secondAttribute="top" id="X1J-W2-JKU"/>
+                                                <constraint firstItem="se0-JR-Kgg" firstAttribute="leading" secondItem="34O-DM-DRb" secondAttribute="leading" constant="16" id="vSB-cf-Twe"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="US" id="tre-Xm-EZS">
+                            <tableViewSection headerTitle="USD" id="tre-Xm-EZS">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="41A-DF-QdX">
-                                        <rect key="frame" x="20" y="155" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="43.5" id="41A-DF-QdX">
+                                        <rect key="frame" x="20" y="155.5" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="41A-DF-QdX" id="nSt-eO-qsT">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48t-Mf-yaO">
-                                                    <rect key="frame" x="20" y="5" width="334" height="34"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="70" translatesAutoresizingMaskIntoConstraints="NO" id="48t-Mf-yaO">
+                                                    <rect key="frame" x="16" y="0.0" width="342" height="43.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="48t-Mf-yaO" secondAttribute="trailing" constant="16" id="0Vt-y6-3yb"/>
+                                                <constraint firstAttribute="bottom" secondItem="48t-Mf-yaO" secondAttribute="bottom" id="J5V-dM-O3r"/>
+                                                <constraint firstItem="48t-Mf-yaO" firstAttribute="top" secondItem="nSt-eO-qsT" secondAttribute="top" id="dn9-cN-2sf"/>
+                                                <constraint firstItem="48t-Mf-yaO" firstAttribute="leading" secondItem="nSt-eO-qsT" secondAttribute="leading" constant="16" id="qry-wV-pQL"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -84,7 +94,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Convertiseur" id="1Y4-xV-sMC">
-                        <barButtonItem key="rightBarButtonItem" image="IconRefresh" id="av5-Mo-jCA">
+                        <barButtonItem key="rightBarButtonItem" title="Valider" id="av5-Mo-jCA">
                             <connections>
                                 <action selector="convertButton:" destination="lPq-Ga-KOp" id="a9w-RW-gcV"/>
                             </connections>
@@ -102,6 +112,5 @@
     </scenes>
     <resources>
         <image name="IconCurrency" width="25" height="25"/>
-        <image name="IconRefresh" width="25" height="25"/>
     </resources>
 </document>
