@@ -20,6 +20,9 @@ class ConverterViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         textField.becomeFirstResponder()
     }
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        textField.resignFirstResponder()
+    }
 }
 
 private extension ConverterViewController {

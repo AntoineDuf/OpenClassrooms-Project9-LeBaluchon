@@ -91,6 +91,7 @@
                         <connections>
                             <outlet property="dataSource" destination="lPq-Ga-KOp" id="elQ-Jn-ERu"/>
                             <outlet property="delegate" destination="lPq-Ga-KOp" id="6oB-Oj-2He"/>
+                            <outletCollection property="gestureRecognizers" destination="kwA-Ag-7lU" appends="YES" id="JfE-qV-xLg"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Convertiseur" id="1Y4-xV-sMC">
@@ -106,6 +107,11 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bLn-O0-Nyk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="kwA-Ag-7lU">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="lPq-Ga-KOp" id="4pv-j5-3J5"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1237.68115942029" y="1589.7321428571429"/>
         </scene>
