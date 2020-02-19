@@ -9,8 +9,7 @@
 import UIKit
 
 class WeatherViewController: UITableViewController {
-        var viewModel = WeatherViewModel()
-    var weather = WeatherService()
+    var viewModel: WeatherViewModel!
     
     @IBOutlet weak var temperatureLabelFirstCity: UILabel!
     @IBOutlet weak var conditionLabelFirstCity: UILabel!
@@ -18,7 +17,6 @@ class WeatherViewController: UITableViewController {
     @IBOutlet weak var firstCityImageWeather: UIImageView!
     @IBOutlet weak var arrowFirstCity: UIImageView!
     @IBOutlet weak var arrowDirectionFirstCity: UILabel!
-    
     @IBOutlet weak var temperatureLabelSecondCity: UILabel!
     @IBOutlet weak var conditionLabelSecondCity: UILabel!
     @IBOutlet weak var windLabelSecondCity: UILabel!
@@ -29,63 +27,17 @@ class WeatherViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurePullToRefresh()
-//        requestWeather(city: city[0])
-//        requestWeather(city: city[1])
-        viewModel.refreshWeather(city: city[0])
-        temperatureLabelFirstCity.text = viewModel.temperature
-    }
-}
-
-private extension WeatherViewController {
-    @IBAction func refreshButton(_ sender: Any) {
-//        requestWeather(city: city[0])
-//        requestWeather(city: city[1])
-
+        configureViewModel()
+//        getWeather()
     }
 }
 
 extension WeatherViewController {
-//    func refeshWeatherFirstCity(weatherData: WeatherInfo) {
-//        self.temperatureLabelFirstCity.text = "\(String(Int(weatherData.main.temp)))°"
-//        self.conditionLabelFirstCity.text = " \(weatherData.weather[0].description.description)"
-//        self.windLabelFirstCity.text = "\(String(Int(weatherData.wind.speed * 3.6))) km/h"
-//        self.firstCityImageWeather.image = UIImage.init(named: weatherData.weather[0].icon)
-//        self.arrowFirstCity.image = UIImage.init(named: updateWindIcon(condition: weatherData.wind.deg)[0])
-//        self.arrowDirectionFirstCity.text = updateWindIcon(condition: weatherData.wind.deg)[1]
-//    }
-//
-//    func refeshWeatherSecondCity(weatherData: WeatherInfo) {
-//        self.temperatureLabelSecondCity.text = "\(String(Int(weatherData.main.temp)))°"
-//        self.conditionLabelSecondCity.text = " \(weatherData.weather[0].description.description)"
-//        self.windLabelSecondCity.text = "\(String(Int(weatherData.wind.speed * 3.6))) km/h"
-//        self.secondCityImageWeather.image = UIImage.init(named: weatherData.weather[0].icon)
-//        self.arrowSecondCity.image = UIImage.init(named: updateWindIcon(condition: weatherData.wind.deg)[0])
-//        self.arrowDirectionSecondCity.text = updateWindIcon(condition: weatherData.wind.deg)[1]
-//    }
-//
-//    func requestWeather(city: String) {
-//        weather.getWeather(city: city) { [weak self] (success, weather) in
-//            guard let me = self else { return }
-//            DispatchQueue.main.async {
-//                if success == true, let data = weather, city == "Pélissanne" {
-//                    me.refeshWeatherFirstCity(weatherData: data)
-//                } else if success == true, let data = weather, city == "New York" {
-//                    me.refeshWeatherSecondCity(weatherData: data)
-//                } else {
-//                    me.alert(title: "Erreur", message: "Echec")
-//                }
-//            }
-//        }
-//    }
-}
-
-extension WeatherViewController {
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 23)
-        let text = section == 0 ? "Pélissanne" : "New York"
-        label.text = text
-        return label
+    override func tableView(
+        _ tableView: UITableView,
+        viewForHeaderInSection section: Int
+    ) -> UIView? {
+        viewModel.viewForHeader(in: section)
     }
 }
 
@@ -100,10 +52,43 @@ private extension WeatherViewController {
         self.refreshControl = refreshControl
     }
     
-    @objc func getWeather() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.refreshControl?.endRefreshing()
+    @objc func getWeather(){
+        viewModel.refreshWeatherCityOne()
+        viewModel.refreshWeatherCityTwo()
+    }
+    
+    func configureViewModel() {
+        viewModel.weatherCityOneHandler = { [weak self] info in
+            guard let me = self else { return }
+            DispatchQueue.main.async {
+                me.temperatureLabelFirstCity.text = info.temperature
+                me.conditionLabelFirstCity.text = info.condition
+                me.windLabelFirstCity.text = info.wind
+                me.firstCityImageWeather.image = UIImage(named: info.image)
+                me.arrowFirstCity.image = UIImage(named: info.compass)
+                me.arrowDirectionFirstCity.text = info.direction
+                me.refreshControl?.endRefreshing()
+            }
         }
-        
+        viewModel.weatherCityTwoHandler = { [weak self] info in
+            guard let me = self else { return }
+            DispatchQueue.main.async {
+                me.temperatureLabelSecondCity.text = info.temperature
+                me.conditionLabelSecondCity.text = info.condition
+                me.windLabelSecondCity.text = info.wind
+                me.secondCityImageWeather.image = UIImage(named: info.image)
+                me.arrowSecondCity.image = UIImage(named: info.compass)
+                me.arrowDirectionSecondCity.text = info.direction
+                me.refreshControl?.endRefreshing()
+            }
+        }
+        viewModel.errorHandler = { [weak self] title in
+            guard let me = self else { return }
+            DispatchQueue.main.async {
+                me.alert(title: title)
+                me.refreshControl?.endRefreshing()
+            }
+        }
     }
 }
+
