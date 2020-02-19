@@ -17,7 +17,7 @@ class WeatherService {
     
     func getWeather(city: String, callback: @escaping (WeatherInfo?, Error?) -> Void) {
         let encodedCity = city.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        let weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(encodedCity)&units=metric&lang=fr&APPID=0bea5b117f2e763e5650645d21327e25")!
+        let weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(encodedCity)&units=metric&lang=fr&APPID=????")!
         let task = weatherSession.dataTask(with: weatherURL) { (data, response, error) in
             guard let data = data,
                 let response = response as? HTTPURLResponse,

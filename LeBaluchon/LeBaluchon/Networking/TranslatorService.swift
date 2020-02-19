@@ -25,7 +25,7 @@ class TranslatorService {
         
         var request = URLRequest(url: TranslatorService.translatorURL)
         request.httpMethod = "POST"
-        let body="key=AIzaSyD53Hp83XqS-mJaX7znTim9u9_qQ--Z0vQ&\(target[languageSetup])&q=\(textToTranslate)&format=text&\(source[languageSetup])"
+        let body="key=????&\(target[languageSetup])&q=\(textToTranslate)&format=text&\(source[languageSetup])"
         request.httpBody = body.data(using: .utf8)
         let task = translatorSession.dataTask(with: request) { (data, response, error) in
             guard let data = data,
