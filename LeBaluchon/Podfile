@@ -5,4 +5,14 @@ use_frameworks!
 target 'LeBaluchon' do
   pod 'SwiftGen', '~> 6.0'
   pod 'SwiftLint'
+  pod 'cocoapods-keys'
+
+
+plugin 'cocoapods-keys', {
+  :project => "LeBaluchon",
+  :keys => [
+      "ApiWeather",
+      "ApiTranslate",
+      "ApiConvert",
+    ]}
 end
