@@ -11,20 +11,22 @@ import UIKit
 class TranslatorViewController: UITableViewController {
     
     @IBOutlet private weak var frenchTextView: UITextView!
-
-    @IBOutlet weak var usTraductionLabel: UILabel!
+    @IBOutlet private weak var usTraductionLabel: UILabel!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     var viewModel: TranslatorViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewModel()
-        frenchTextView.returnKeyType = UIReturnKeyType.done
+    }
+    
+    @IBAction func reverseButton(_ sender: Any) {
+        viewModel.configLangage()
+        self.tableView.reloadData()
     }
     override func viewDidAppear(_ animated: Bool) {
         frenchTextView.becomeFirstResponder()
-    }
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        frenchTextView.resignFirstResponder()
     }
 }
 
@@ -37,12 +39,20 @@ extension TranslatorViewController {
     }
 }
 
-private extension TranslatorViewController{
-    @IBAction func traductionButton(_ sender: Any) {
-        translate()
+private extension TranslatorViewController {
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        frenchTextView.resignFirstResponder()
     }
     
+    @IBAction func traductionButton(_ sender: Any) {
+        activityIndicator.startAnimating()
+        translate()
+    }
+}
+
+private extension TranslatorViewController {
     func translate() {
+        activityIndicator.startAnimating()
         let text = frenchTextView.text
         viewModel.translate(text: text)
     }
@@ -53,16 +63,14 @@ private extension TranslatorViewController{
             DispatchQueue.main.async {
                 let text = translations.first?.translatedText
                 me.usTraductionLabel.text = text
+                me.activityIndicator.stopAnimating()
             }
         }
-    }
-}
-
-extension TranslatorViewController: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        if frenchTextView.text.last == "\n" { //Check if last char is newline
-            frenchTextView.text.removeLast() //Remove newline
-            frenchTextView.resignFirstResponder() //Dismiss keyboard
+        viewModel.errorHandler = { [weak self] title in
+            guard let me = self else { return }
+            DispatchQueue.main.async {
+                me.alert(title: title)
+            }
         }
     }
 }
