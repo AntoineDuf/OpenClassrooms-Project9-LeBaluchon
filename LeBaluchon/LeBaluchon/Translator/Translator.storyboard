@@ -46,7 +46,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jGf-HT-gzy">
+                                                <textView clipsSubviews="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jGf-HT-gzy">
                                                     <rect key="frame" x="36" y="27" width="302" height="96"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -82,10 +82,15 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="K3E-e2-bFT">
+                                                    <rect key="frame" x="177" y="65" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="1Qj-2b-1kA" secondAttribute="bottom" constant="16" id="5mS-jT-vcN"/>
+                                                <constraint firstItem="K3E-e2-bFT" firstAttribute="centerX" secondItem="per-HX-kZy" secondAttribute="centerX" id="LtO-Pg-d1P"/>
                                                 <constraint firstItem="1Qj-2b-1kA" firstAttribute="leading" secondItem="per-HX-kZy" secondAttribute="leadingMargin" constant="16" id="Zfl-C6-SJf"/>
+                                                <constraint firstItem="K3E-e2-bFT" firstAttribute="centerY" secondItem="per-HX-kZy" secondAttribute="centerY" id="d4m-yV-PjO"/>
                                                 <constraint firstItem="1Qj-2b-1kA" firstAttribute="top" secondItem="per-HX-kZy" secondAttribute="topMargin" constant="16" id="dvE-eQ-ylk"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="1Qj-2b-1kA" secondAttribute="trailing" constant="16" id="vN3-yL-yVr"/>
                                             </constraints>
@@ -101,6 +106,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Traducteur" id="fEG-zy-dWW">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="IconRefresh" id="YA2-QN-gOQ">
+                            <connections>
+                                <action selector="reverseButton:" destination="1Nk-P1-P6e" id="S8h-OR-hGs"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Valider" id="mk0-O3-GRv">
                             <connections>
                                 <action selector="traductionButton:" destination="1Nk-P1-P6e" id="W8c-KV-V0x"/>
@@ -108,6 +118,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="K3E-e2-bFT" id="o6p-EK-ERM"/>
                         <outlet property="frenchTextView" destination="jGf-HT-gzy" id="7ev-R1-cXd"/>
                         <outlet property="usTraductionLabel" destination="1Qj-2b-1kA" id="5v9-sd-Of9"/>
                     </connections>
@@ -123,6 +134,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="IconRefresh" width="25" height="25"/>
         <image name="IconTranslate" width="25" height="25"/>
     </resources>
 </document>

@@ -76,6 +76,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="0Ss-7N-PEU">
+                                                    <rect key="frame" x="177" y="12" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="48t-Mf-yaO" secondAttribute="trailing" constant="16" id="0Vt-y6-3yb"/>
@@ -95,6 +99,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Convertiseur" id="1Y4-xV-sMC">
+                        <barButtonItem key="leftBarButtonItem" image="IconRefresh" id="gNG-tZ-P9h">
+                            <connections>
+                                <action selector="reverseButton:" destination="lPq-Ga-KOp" id="9wg-Kw-k0d"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Valider" id="av5-Mo-jCA">
                             <connections>
                                 <action selector="convertButton:" destination="lPq-Ga-KOp" id="a9w-RW-gcV"/>
@@ -102,6 +111,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="0Ss-7N-PEU" id="7JR-BG-wRC"/>
                         <outlet property="labelField" destination="48t-Mf-yaO" id="1po-E7-jHn"/>
                         <outlet property="textField" destination="se0-JR-Kgg" id="sAd-DB-SYH"/>
                     </connections>
@@ -118,5 +128,6 @@
     </scenes>
     <resources>
         <image name="IconCurrency" width="25" height="25"/>
+        <image name="IconRefresh" width="25" height="25"/>
     </resources>
 </document>
