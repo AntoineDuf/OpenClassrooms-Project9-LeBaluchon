@@ -31,18 +31,6 @@ struct Wind: Decodable {
     let deg: Int
 }
 
-struct City {
-    var city: String?
-    var country: String?
-
-    enum CodingKeys: String, CodingKey {
-        case nameCity = "name"
-        case nameCountry = "country"
-    }
-
-
-}
-
 func updateWindIcon(condition: Int) -> [String] {
   switch (condition) {
   case 0...22:
