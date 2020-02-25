@@ -26,7 +26,7 @@ class ConverterViewController: UITableViewController {
     }
     
     @IBAction func reverseButton(_ sender: Any) {
-        viewModel.configConverter()
+        viewModel.toggleCurrency()
         self.tableView.reloadData()
     }
 }

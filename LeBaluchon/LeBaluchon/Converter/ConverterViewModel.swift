@@ -11,7 +11,7 @@ import UIKit
 struct ConverterViewModel {
     var converterHandler: (_ convertText: String) -> Void = {_ in }
     var errorHandler: (_ message: String) -> Void = {_ in }
-    var currencySetup = 0
+    var currencySetup = Currency.Euro
     private let converterService: ConverterService
     
     init(converterService: ConverterService = .init()) {
@@ -24,23 +24,24 @@ extension ConverterViewModel {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 23)
         let text: String
-        if currencySetup == 0 {
+        switch currencySetup {
+        case .Euro:
             text = section == 0 ? "EUR" : "USD"
-        } else {
+        case .USDollar:
             text = section == 0 ? "USD" : "EUR"
         }
         label.text = text
         return label
     }
     
-    mutating func configConverter() {
-        self.currencySetup = currencySetup == 0 ? 1 : 0
+    mutating func toggleCurrency() {
+        self.currencySetup = currencySetup == Currency.Euro ? Currency.USDollar : Currency.Euro
     }
     
     func getConvert(text: String) {
         converterService.getRate() { (data, error) in
             if let data = data {
-                if self.currencySetup == 0 {
+                if self.currencySetup == Currency.Euro {
                     let currency = data.rates["USD"]
                     let convert = Double(text)! * Double(currency!)
                     let convertText = "\(String(format: "%.2f", convert))$"
@@ -56,5 +57,12 @@ extension ConverterViewModel {
                 self.errorHandler(message)
             }
         }
+    }
+}
+
+extension ConverterViewModel {
+    enum Currency: String {
+        case Euro = "EUR"
+        case USDollar = "USD"
     }
 }
