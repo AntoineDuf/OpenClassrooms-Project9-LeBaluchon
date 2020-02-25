@@ -12,7 +12,11 @@ struct WeatherViewModel {
     var weatherCityOneHandler: (_ infoCityOne: Info) -> Void = {_ in }
     var weatherCityTwoHandler: (_ infoCitytwo: Info) -> Void = {_ in }
     var errorHandler: (_ message: String) -> Void = {_ in }
-    let weatherService = WeatherService()
+    var weatherService = WeatherService()
+    
+    init(weatherService: WeatherService = .init()) {
+        self.weatherService = weatherService
+    }
     
     func viewForHeader(in section: Int) -> UIView {
         let label = UILabel()
