@@ -8,10 +8,11 @@
 
 import UIKit
 
-struct TranslatorViewModel {
+class TranslatorViewModel {
     var translateHandler: (_ translations: [Translation]) -> Void = {_ in }
     var errorHandler: (_ message: String) -> Void = {_ in }
-    var languageSetup = 0
+    var selectedLanguage = Languages.French
+
     private let translatorService: TranslatorService
     
     init(translatorService: TranslatorService = .init()) {
@@ -24,22 +25,24 @@ extension TranslatorViewModel {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 23)
         let text: String
-        if languageSetup == 0 {
-            text = section == 0 ? "Français" : "Anglais"
-        } else {
-            text = section == 0 ? "Anglais" : "Français"
+        switch selectedLanguage {
+        case .French:
+            text = section == 0 ? Languages.French.rawValue : Languages.English.rawValue
+        case .English:
+            text = section == 0 ? Languages.English.rawValue : Languages.French.rawValue
         }
         label.text = text
         return label
     }
 
     
-    mutating func configLangage() {
-        self.languageSetup = languageSetup == 0 ? 1 : 0
+    func toggleLanguage() {
+        self.selectedLanguage = selectedLanguage == Languages.French ? Languages.English : Languages.French
     }
     
     func translate(text: String!) {
-        translatorService.postTranslation(textToTranslate: text, languageSetup: languageSetup) { (data, error) in
+        let languageIndex = selectedLanguage == .French ? 0 : 1
+        translatorService.postTranslation(textToTranslate: text, languageIndex: languageIndex) { (data, error) in
             if let data = data {
                 self.translateHandler(data.translations)
             } else {
@@ -49,3 +52,11 @@ extension TranslatorViewModel {
         }
     }
 }
+
+extension TranslatorViewModel {
+    enum Languages: String {
+        case French = "Français"
+        case English = "Anglais"
+    }
+}
+

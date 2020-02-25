@@ -21,10 +21,6 @@ class TranslatorViewController: UITableViewController {
         configureViewModel()
     }
     
-    @IBAction func reverseButton(_ sender: Any) {
-        viewModel.configLangage()
-        self.tableView.reloadData()
-    }
     override func viewDidAppear(_ animated: Bool) {
         frenchTextView.becomeFirstResponder()
     }
@@ -47,6 +43,13 @@ private extension TranslatorViewController {
     @IBAction func traductionButton(_ sender: Any) {
         activityIndicator.startAnimating()
         translate()
+    }
+    
+    @IBAction func reverseButton(_ sender: Any) {
+        viewModel.toggleLanguage()
+        frenchTextView.text = ""
+        usTraductionLabel.text = ""
+        tableView.reloadData()
     }
 }
 
