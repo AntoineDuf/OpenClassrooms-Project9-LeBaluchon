@@ -12,6 +12,10 @@ class TranslatorService {
     
     private let translatorSession: URLSession
     private static let translatorURL = URL(string: "https://translation.googleapis.com/language/translate/v2/")!
+    private let target = ["target=EN", "target=FR"]
+    private let source = ["source=fr", "source=en"]
+    private let translatorAPIKey = valueForAPIKey(named: "TranslatorKey")
+
     
     init(translatorSession: URLSession = .init(configuration: .default)) {
         self.translatorSession = translatorSession
@@ -19,13 +23,13 @@ class TranslatorService {
     
     func postTranslation(
         textToTranslate: String,
-        languageSetup: Int,
+        languageIndex: Int,
         callback: @escaping (TranslationDataClass?, Error?) -> Void)
     {
         
         var request = URLRequest(url: TranslatorService.translatorURL)
         request.httpMethod = "POST"
-        let body="key=????&\(target[languageSetup])&q=\(textToTranslate)&format=text&\(source[languageSetup])"
+        let body="key=\(translatorAPIKey)&\(target[languageIndex])&q=\(textToTranslate)&format=text&\(source[languageIndex])"
         request.httpBody = body.data(using: .utf8)
         let task = translatorSession.dataTask(with: request) { (data, response, error) in
             guard let data = data,

@@ -10,6 +10,7 @@ import Foundation
 
 class WeatherService {
     private let weatherSession: URLSession
+    private let weatherAPIKey = valueForAPIKey(named: "WeatherKey")
     
     init(weatherSession: URLSession = .init(configuration: .default)) {
         self.weatherSession = weatherSession
@@ -17,7 +18,7 @@ class WeatherService {
     
     func getWeather(city: String, callback: @escaping (WeatherInfo?, Error?) -> Void) {
         let encodedCity = city.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-        let weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(encodedCity)&units=metric&lang=fr&APPID=????")!
+        let weatherURL = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(encodedCity)&units=metric&lang=fr&APPID=\(weatherAPIKey)")!
         let task = weatherSession.dataTask(with: weatherURL) { (data, response, error) in
             guard let data = data,
                 let response = response as? HTTPURLResponse,
