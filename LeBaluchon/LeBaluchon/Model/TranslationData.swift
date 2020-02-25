@@ -8,9 +8,6 @@
 
 import Foundation
 
-var target = ["target=EN", "target=FR"]
-var source = ["source=fr", "source=en"]
-
 struct TranslationData: Decodable {
     let data: TranslationDataClass
 }
