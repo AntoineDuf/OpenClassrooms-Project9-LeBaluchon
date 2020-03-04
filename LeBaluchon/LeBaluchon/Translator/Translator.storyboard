@@ -13,8 +13,8 @@
                 <navigationController id="S1l-q9-qel" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Traducteur" image="IconTranslate" id="tog-g7-vLl"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="w5j-sg-euz">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="w5j-sg-euz">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
@@ -82,8 +82,9 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="K3E-e2-bFT">
-                                                    <rect key="frame" x="177" y="65" width="20" height="20"/>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="K3E-e2-bFT">
+                                                    <rect key="frame" x="168.5" y="56.5" width="37" height="37"/>
+                                                    <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </activityIndicatorView>
                                             </subviews>
                                             <constraints>
@@ -105,7 +106,7 @@
                             <outletCollection property="gestureRecognizers" destination="TAr-qh-Rfi" appends="YES" id="zaa-6D-7dr"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Traducteur" id="fEG-zy-dWW">
+                    <navigationItem key="navigationItem" title="Traducteur" largeTitleDisplayMode="always" id="fEG-zy-dWW">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="IconRefresh" id="YA2-QN-gOQ">
                             <connections>
                                 <action selector="reverseButton:" destination="1Nk-P1-P6e" id="S8h-OR-hGs"/>

@@ -7,14 +7,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Convertiseur-->
+        <!--Convertisseur-->
         <scene sceneID="dWo-Ok-mGz">
             <objects>
                 <navigationController id="PNe-7q-Cqp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Convertiseur" image="IconCurrency" id="Swa-E3-2Ld"/>
+                    <tabBarItem key="tabBarItem" title="Convertisseur" image="IconCurrency" id="Swa-E3-2Ld"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="igr-h4-4wP">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="igr-h4-4wP">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
@@ -28,7 +28,7 @@
             </objects>
             <point key="canvasLocation" x="-506" y="1590"/>
         </scene>
-        <!--Convertiseur-->
+        <!--Convertisseur-->
         <scene sceneID="bCF-do-vW8">
             <objects>
                 <tableViewController id="lPq-Ga-KOp" customClass="ConverterViewController" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
@@ -76,9 +76,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="0Ss-7N-PEU">
-                                                    <rect key="frame" x="177" y="12" width="20" height="20"/>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="0Ss-7N-PEU">
+                                                    <rect key="frame" x="169" y="4" width="37" height="37"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </activityIndicatorView>
                                             </subviews>
                                             <constraints>
@@ -98,7 +99,7 @@
                             <outletCollection property="gestureRecognizers" destination="kwA-Ag-7lU" appends="YES" id="JfE-qV-xLg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Convertiseur" id="1Y4-xV-sMC">
+                    <navigationItem key="navigationItem" title="Convertisseur" largeTitleDisplayMode="always" id="1Y4-xV-sMC">
                         <barButtonItem key="leftBarButtonItem" image="IconRefresh" id="gNG-tZ-P9h">
                             <connections>
                                 <action selector="reverseButton:" destination="lPq-Ga-KOp" id="9wg-Kw-k0d"/>
