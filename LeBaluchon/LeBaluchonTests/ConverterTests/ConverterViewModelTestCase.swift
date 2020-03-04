@@ -26,53 +26,102 @@ class ConverterViewModelTestCase: XCTestCase {
         super.tearDown()
     }
     
-    func testGivenTextViewHaveAText_WhenValidateButtonIsTappedAndCurrencySetupHasChanged_ThenConverterHandlerSendAResultInEuro() {
+    func testConvertInUSDollar() {
+        //        Given :
+        let ex = expectation(description: "")
+        let text = "1"
+        //When :
         converterViewModel.currencySetup = ConverterViewModel.Currency.USDollar
         converterViewModel.toggleCurrency()
-        converterViewModel.getConvert(text: "1")
-        
-        XCTAssertNotNil(converterViewModel.converterHandler)
+        converterViewModel.converterHandler = { convertText in
+            XCTAssertEqual(convertText, "1.08$")
+            ex.fulfill()
+        }
+        //Then :
+        converterViewModel.getConvert(text: text)
+        wait(for: [ex], timeout: 1)
+        XCTAssertEqual(converterViewModel.currencySetup, ConverterViewModel.Currency.Euro)
         }
     
-    func testGivenTextViewHaveAText_WhenValidateButtonIsTappedAndCurrencySetupHasNotChanged_ThenConverterHandlerSendAResultInUsDollar() {
+        func testConvertInEuros() {
+        //        Given :
+        let ex = expectation(description: "")
+        let text = "1"
+        //When :
+        converterViewModel.currencySetup = ConverterViewModel.Currency.Euro
         converterViewModel.toggleCurrency()
-        converterViewModel.getConvert(text: "1")
-        
-        XCTAssertNotNil(converterViewModel.converterHandler)
+        converterViewModel.converterHandler = { convertText in
+            XCTAssertEqual(convertText, "0.93€")
+            ex.fulfill()
+        }
+        //Then :
+        converterViewModel.getConvert(text: text)
+        wait(for: [ex], timeout: 1)
+        XCTAssertEqual(converterViewModel.currencySetup, ConverterViewModel.Currency.USDollar)
         }
     
-    func testGivenTextViewHaveAText_WhenReafreshButtonIsTappedButNetworkCallSendbackNilData_ThenErrorHandlerSendAResult() {
-        converterService = ConverterService(converterSession: URLSessionFake(data: nil, response: FakeResponseData.responseKO, error: nil))
+    func testErrorMessageIfUnknowError() {
+        // Given
+        converterService = ConverterService(
+            converterSession: URLSessionFake(
+                data: nil,
+                response: FakeResponseData.responseKO,
+                error: nil
+        )
+        )
         converterViewModel = ConverterViewModel(converterService: converterService)
-        converterViewModel.getConvert(text: "1")
-        
-        XCTAssertNotNil(converterViewModel.errorHandler)
+        let ex = expectation(description: "")
+        let text = "1"
+        // When
+        converterViewModel.errorHandler = { message in
+            XCTAssertEqual(message, "Une erreur est survenue.")
+            ex.fulfill()
+        }
+        // Then
+        converterViewModel.getConvert(text: text)
+        wait(for: [ex], timeout: 1)
         }
     
-    func testGivenFirstLabelCell_WhenViewDidLoad_ThenFirstLabellCellIsEUR() {
+    func testErrorMessageIfWrongTextSend() {
+        // Given
+        let ex = expectation(description: "")
+        let text = "Essaie"
+        // When
+        converterViewModel.errorHandler = { message in
+            XCTAssertEqual(message, "Merci d'entrer une valeur correcte.")
+            ex.fulfill()
+        }
+        // Then
+        converterViewModel.getConvert(text: text)
+        wait(for: [ex], timeout: 1)
+        }
+    
+    func testFirstLabelCellAtTheLaunch() {
         let configView = converterViewModel.viewForHeader(in: 0)
         
         XCTAssertEqual(configView.largeContentTitle, "EUR")
         }
     
-    func testGivenSecondLabelCell_WhenViewDidLoad_ThenSecondLabellCellIsUSD() {
+    func testSecondLabelCellAtTheLaunch() {
         let configView = converterViewModel.viewForHeader(in: 1)
         
         XCTAssertEqual(configView.largeContentTitle, "USD")
         }
     
-    func testGivenFirstLabelCell_WhenInverseButtonIsTapped_ThenFirstLabelCellIsUSD() {
+    func testFirstLabelCellWhenConvertCurrencyHaveBeenSwitch() {
         converterViewModel.toggleCurrency()
         let configView = converterViewModel.viewForHeader(in: 0)
         
         XCTAssertEqual(configView.largeContentTitle, "USD")
+        XCTAssertEqual(converterViewModel.currencySetup, ConverterViewModel.Currency.USDollar)
         }
     
-    func testGivenSecondLabelCell_WhenInverseButtonIsTapped_ThenSecondLabelCellIsEUR() {
+    func testSecondLabelCellWhenConvertCurrencyHaveBeenSwitch() {
         converterViewModel.toggleCurrency()
         let configView = converterViewModel.viewForHeader(in: 1)
         
         XCTAssertEqual(configView.largeContentTitle, "EUR")
+        XCTAssertEqual(converterViewModel.currencySetup, ConverterViewModel.Currency.USDollar)
         }
     }
 

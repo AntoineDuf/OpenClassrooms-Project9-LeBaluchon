@@ -24,26 +24,33 @@ class ConverterViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         textField.becomeFirstResponder()
     }
-    
-    @IBAction func reverseButton(_ sender: Any) {
-        viewModel.toggleCurrency()
-        self.tableView.reloadData()
-    }
 }
 
+// MARK: - Interaction, buttons.
 private extension ConverterViewController {
+    // Dismiss the keyboard if user tap anywhere on the screen.
+    @IBAction func dismissKeyboard(_ sender: Any) {
+        textField.resignFirstResponder()
+        tableView.reloadData()
+    }
+    
+    // Validate button that start the conversion.
     @IBAction func convertButton(_ sender: Any) {
         activityIndicator.startAnimating()
         let text = textField.text
         viewModel.getConvert(text: text!)
     }
     
-    @IBAction func dismissKeyboard(_ sender: Any) {
-        textField.resignFirstResponder()
-        tableView.reloadData()
+    // Reverse button that inverse the configuration of the two currency.
+    @IBAction func reverseButton(_ sender: Any) {
+        viewModel.toggleCurrency()
+        textField.text = ""
+        labelField.text = ""
+        self.tableView.reloadData()
     }
 }
 
+// MARK: - Display and translation methods.
 extension ConverterViewController {
     override func tableView(
         _ tableView: UITableView,
@@ -52,6 +59,7 @@ extension ConverterViewController {
         self.viewModel.viewForHeader(in: section)
     }
     
+    /// Configure the two closures who manage the two states of currency request.
     func configureViewModel() {
         viewModel.converterHandler = { [weak self] convertText in
             guard let me = self else { return }

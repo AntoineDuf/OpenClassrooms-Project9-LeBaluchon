@@ -15,9 +15,9 @@ class ConverterService {
     init(converterSession: URLSession = .init(configuration: .default)) {
         self.converterSession = converterSession
     }
-    
+    /// Networking call to fixier.io for get the currency rates.
     func getRate(callback: @escaping (Currency?, Error?) -> Void) {
-        let converterURL = URL(string: "http://data.fixer.io/api/latest?access_key=\(converterAPIKey)base=EUR&symbols=USD")!
+        let converterURL = URL(string: "http://data.fixer.io/api/latest?access_key=\(converterAPIKey)&base=EUR&symbols=USD")!
         let task = converterSession.dataTask(with: converterURL) { (data, response, error) in
             guard let data = data,
                 let response = response as? HTTPURLResponse,

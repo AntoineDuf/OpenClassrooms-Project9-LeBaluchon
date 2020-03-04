@@ -8,10 +8,11 @@
 
 import UIKit
 
-struct ConverterViewModel {
+class ConverterViewModel {
     var converterHandler: (_ convertText: String) -> Void = {_ in }
     var errorHandler: (_ message: String) -> Void = {_ in }
     var currencySetup = Currency.Euro
+    
     private let converterService: ConverterService
     
     init(converterService: ConverterService = .init()) {
@@ -19,7 +20,9 @@ struct ConverterViewModel {
     }
 }
 
+// MARK: - Methods.
 extension ConverterViewModel {
+    /// Method that configure the cells titles.
     func viewForHeader(in section: Int) -> UIView {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 23)
@@ -34,32 +37,40 @@ extension ConverterViewModel {
         return label
     }
     
-    mutating func toggleCurrency() {
+    /// Method that changes the configuration of the conversion currency.
+    func toggleCurrency() {
         self.currencySetup = currencySetup == Currency.Euro ? Currency.USDollar : Currency.Euro
     }
     
+    /// Method that launch the api call, do the conversion and sendback the answer to the handlers.
     func getConvert(text: String) {
+        guard let value = Double(text) else {
+            errorHandler("Merci d'entrer une valeur correcte.")
+            return
+        }
         converterService.getRate() { (data, error) in
-            if let data = data {
-                if self.currencySetup == Currency.Euro {
-                    let currency = data.rates["USD"]
-                    let convert = Double(text)! * Double(currency!)
-                    let convertText = "\(String(format: "%.2f", convert))$"
-                    self.converterHandler(convertText)
-                } else {
-                    let currency = data.rates["USD"]
-                    let convert = Double(text)! / Double(currency!)
-                    let convertText = "\(String(format: "%.2f", convert))€"
-                    self.converterHandler(convertText)
-                }
-            } else {
-                let message = error?.localizedDescription ?? "Une erreur est survenue."
-                self.errorHandler(message)
+            guard let data = data,
+            let rate = data.rates["USD"]
+                else {
+                    let message = error?.localizedDescription ?? "Une erreur est survenue."
+                    self.errorHandler(message)
+                    return
             }
+            let currency = Double(rate)
+            let convertText: String
+            if self.currencySetup == Currency.Euro {
+                let convert = value * currency
+                convertText = convert.toDollar
+            } else {
+                let convert = value / currency
+                convertText = convert.toEuro
+            }
+            self.converterHandler(convertText)
         }
     }
 }
 
+// MARK: - Currency property.
 extension ConverterViewModel {
     enum Currency: String {
         case Euro = "EUR"
