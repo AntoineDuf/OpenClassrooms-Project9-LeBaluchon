@@ -26,25 +26,20 @@ class TranslatorViewController: UITableViewController {
     }
 }
 
-extension TranslatorViewController {
-    override func tableView(
-        _ tableView: UITableView,
-        viewForHeaderInSection section: Int
-    ) -> UIView? {
-        viewModel.viewForHeader(in: section)
-    }
-}
-
+// MARK: - Interaction, buttons.
 private extension TranslatorViewController {
+    // Dismiss the keyboard if user tap anywhere on the screen.
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         frenchTextView.resignFirstResponder()
     }
     
+    // Validate button that start the translation.
     @IBAction func traductionButton(_ sender: Any) {
         activityIndicator.startAnimating()
         translate()
     }
     
+    // Reverse button that inverse the configuration of the two language.
     @IBAction func reverseButton(_ sender: Any) {
         viewModel.toggleLanguage()
         frenchTextView.text = ""
@@ -53,13 +48,16 @@ private extension TranslatorViewController {
     }
 }
 
+// MARK: - Translation methods.
 private extension TranslatorViewController {
+    /// Launch the translation in the viewModel
     func translate() {
         activityIndicator.startAnimating()
         let text = frenchTextView.text
         viewModel.translate(text: text)
     }
     
+    /// Configure the two closures who manage the two states of translation request.
     func configureViewModel() {
         viewModel.translateHandler = { [weak self] translations in
             guard let me = self else { return }
@@ -75,5 +73,15 @@ private extension TranslatorViewController {
                 me.alert(title: title)
             }
         }
+    }
+}
+
+// MARK: - Display method.
+extension TranslatorViewController {
+    override func tableView(
+        _ tableView: UITableView,
+        viewForHeaderInSection section: Int
+    ) -> UIView? {
+        viewModel.viewForHeader(in: section)
     }
 }

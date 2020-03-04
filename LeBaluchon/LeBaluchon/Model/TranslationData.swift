@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Struct for decode the Json api return.
 struct TranslationData: Decodable {
     let data: TranslationDataClass
 }

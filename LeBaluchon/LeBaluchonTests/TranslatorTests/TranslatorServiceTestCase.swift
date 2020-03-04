@@ -26,7 +26,7 @@ class TranslatorServiceTestCase: XCTestCase {
     
     func testPostTranslationShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
         // Given
-        let translatorService = TranslatorService(translatorSession: URLSessionFake(data: FakeResponseData.translatorCorrectData, response: FakeResponseData.responseOK, error: nil))
+        let translatorService = TranslatorService(translatorSession: URLSessionFake(data: FakeResponseData.translatorCorrectDataFrenchToEnglish, response: FakeResponseData.responseOK, error: nil))
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         translatorService.postTranslation(textToTranslate: "Bonjour", languageIndex: 0) { (translation, error) in

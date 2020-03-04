@@ -20,7 +20,7 @@ class TranslatorService {
     init(translatorSession: URLSession = .init(configuration: .default)) {
         self.translatorSession = translatorSession
     }
-    
+    /// Networking call to google.translate for get the translation wanted.
     func postTranslation(
         textToTranslate: String,
         languageIndex: Int,
