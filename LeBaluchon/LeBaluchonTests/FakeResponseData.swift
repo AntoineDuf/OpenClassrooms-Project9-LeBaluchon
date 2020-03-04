@@ -22,9 +22,16 @@ class FakeResponseData {
         return data
     }
     
-    static var translatorCorrectData: Data {
+    static var translatorCorrectDataFrenchToEnglish: Data {
         let bundle = Bundle(for: FakeResponseData.self)
-        let url = bundle.url(forResource: "Translate", withExtension: "json")
+        let url = bundle.url(forResource: "TranslateFrenchToEnglish", withExtension: "json")
+        let data = try! Data(contentsOf: url!)
+        return data
+    }
+    
+    static var translatorCorrectDataEnglishToFrench: Data {
+        let bundle = Bundle(for: FakeResponseData.self)
+        let url = bundle.url(forResource: "TranslateEnglishToFrench", withExtension: "json")
         let data = try! Data(contentsOf: url!)
         return data
     }
