@@ -8,8 +8,8 @@
 
 import Foundation
 
-var city = ["Pélissanne", "New York"]
 
+/// Struct for decode the Json api return.
 struct WeatherInfo: Decodable {
     let weather: [Weather]
     let main: Main
@@ -31,27 +31,4 @@ struct Wind: Decodable {
     let deg: Int
 }
 
-func updateWindIcon(condition: Int) -> [String] {
-  switch (condition) {
-  case 0...22:
-    return ["IconCompassN", "Nord"]
-  case 333...360:
-    return ["IconCompassN","Nord"]
-  case 23...67:
-    return ["IconCompassN-E","Nord-est"]
-  case 68...112:
-    return ["IconCompassE", "Est"]
-  case 113...157:
-    return ["IconCompassS-E", "Sud-est"]
-  case 158...202:
-    return ["IconCompassS", "Sud"]
-  case 203...247:
-    return ["IconCompassS-O", "Sud-ouest"]
-  case 248...292:
-    return ["IconCompassO", "Ouest"]
-  case 293...337:
-    return ["IconCompassN-O", "Nord-Ouest"]
-  default :
-    return ["dunno", "dunno"]
-  }
-}
+

@@ -28,10 +28,11 @@ class WeatherViewController: UITableViewController {
         super.viewDidLoad()
         configurePullToRefresh()
         configureViewModel()
-//        getWeather()
+        getWeather()
     }
 }
 
+// MARK: - Display and interaction settings.
 extension WeatherViewController {
     override func tableView(
         _ tableView: UITableView,
@@ -39,9 +40,8 @@ extension WeatherViewController {
     ) -> UIView? {
         viewModel.viewForHeader(in: section)
     }
-}
-
-private extension WeatherViewController {
+    
+    /// Method that configure the interaction of pull to refresh.
     func configurePullToRefresh() {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(
@@ -51,12 +51,17 @@ private extension WeatherViewController {
         )
         self.refreshControl = refreshControl
     }
-    
+}
+
+// MARK: - Weather methods.
+private extension WeatherViewController {
+    /// Methods that start the api call in the viewModel to get the weather of the two city.
     @objc func getWeather(){
         viewModel.refreshWeatherCityOne()
         viewModel.refreshWeatherCityTwo()
     }
     
+    /// Configure the two closures who manage the weather request.
     func configureViewModel() {
         viewModel.weatherCityOneHandler = { [weak self] info in
             guard let me = self else { return }
