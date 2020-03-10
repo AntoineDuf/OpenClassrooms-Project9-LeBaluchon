@@ -12,9 +12,9 @@
 		8B20E53A24043C83000E5D63 /* WeatherViewModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B20E53924043C83000E5D63 /* WeatherViewModelTestCase.swift */; };
 		8B20E54424059F2E000E5D63 /* ApiKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B20E54324059F2D000E5D63 /* ApiKeys.plist */; };
 		8B20E54624059FD9000E5D63 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B20E54524059FD9000E5D63 /* ApiKeys.swift */; };
-		8B20E5482405B71B000E5D63 /* Double+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B20E5472405B71B000E5D63 /* Double+String.swift */; };
+		8B20E5482405B71B000E5D63 /* Double+ConvertToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B20E5472405B71B000E5D63 /* Double+ConvertToString.swift */; };
 		8B20E54A2408061C000E5D63 /* TranslateEnglishToFrench.json in Resources */ = {isa = PBXBuildFile; fileRef = 8B20E5492408061C000E5D63 /* TranslateEnglishToFrench.json */; };
-		8B20E54E240EEC1E000E5D63 /* String+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B20E54D240EEC1E000E5D63 /* String+String.swift */; };
+		8B20E54E240EEC1E000E5D63 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B20E54D240EEC1E000E5D63 /* String+Capitalize.swift */; };
 		8B37B2A523D8640700F53DB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B37B2A423D8640700F53DB7 /* AppDelegate.swift */; };
 		8B37B2AC23D8640700F53DB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B37B2AA23D8640700F53DB7 /* Main.storyboard */; };
 		8B37B2AE23D8640900F53DB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B37B2AD23D8640900F53DB7 /* Assets.xcassets */; };
@@ -63,9 +63,9 @@
 		8B20E53924043C83000E5D63 /* WeatherViewModelTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModelTestCase.swift; sourceTree = "<group>"; };
 		8B20E54324059F2D000E5D63 /* ApiKeys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ApiKeys.plist; sourceTree = "<group>"; };
 		8B20E54524059FD9000E5D63 /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
-		8B20E5472405B71B000E5D63 /* Double+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+String.swift"; sourceTree = "<group>"; };
+		8B20E5472405B71B000E5D63 /* Double+ConvertToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+ConvertToString.swift"; sourceTree = "<group>"; };
 		8B20E5492408061C000E5D63 /* TranslateEnglishToFrench.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TranslateEnglishToFrench.json; sourceTree = "<group>"; };
-		8B20E54D240EEC1E000E5D63 /* String+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+String.swift"; sourceTree = "<group>"; };
+		8B20E54D240EEC1E000E5D63 /* String+Capitalize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalize.swift"; sourceTree = "<group>"; };
 		8B37B2A123D8640700F53DB7 /* LeBaluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeBaluchon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B37B2A423D8640700F53DB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B37B2AB23D8640700F53DB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -223,8 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				8B59463C23E217E400E48841 /* UIViewController+UIAlertController.swift */,
-				8B20E5472405B71B000E5D63 /* Double+String.swift */,
-				8B20E54D240EEC1E000E5D63 /* String+String.swift */,
+				8B20E5472405B71B000E5D63 /* Double+ConvertToString.swift */,
+				8B20E54D240EEC1E000E5D63 /* String+Capitalize.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -391,12 +391,12 @@
 			files = (
 				8B59463D23E217E400E48841 /* UIViewController+UIAlertController.swift in Sources */,
 				8B9CDD0B23F5A99C004F1C47 /* ConverterViewModel.swift in Sources */,
-				8B20E5482405B71B000E5D63 /* Double+String.swift in Sources */,
+				8B20E5482405B71B000E5D63 /* Double+ConvertToString.swift in Sources */,
 				8BE8157A23E9B3F7009083E7 /* WeatherViewModel.swift in Sources */,
 				8B6BF7BE23E1CF7100A0191F /* CurrencyInfo.swift in Sources */,
 				8B37B2E623D8B50F00F53DB7 /* WeatherService.swift in Sources */,
 				8B37B2A523D8640700F53DB7 /* AppDelegate.swift in Sources */,
-				8B20E54E240EEC1E000E5D63 /* String+String.swift in Sources */,
+				8B20E54E240EEC1E000E5D63 /* String+Capitalize.swift in Sources */,
 				8B7A85B723DB41E0007F33DF /* WeatherInfo.swift in Sources */,
 				8B37B2E223D8870F00F53DB7 /* TranslatorViewController.swift in Sources */,
 				8BE8157C23EB2C18009083E7 /* TranslationData.swift in Sources */,
