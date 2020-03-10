@@ -60,7 +60,7 @@ extension ConverterViewController {
     }
     
     /// Configure the two closures who manage the two states of currency request.
-    func configureViewModel() {
+    private func configureViewModel() {
         viewModel.converterHandler = { [weak self] convertText in
             guard let me = self else { return }
             DispatchQueue.main.async {
@@ -71,6 +71,7 @@ extension ConverterViewController {
         viewModel.errorHandler = { [weak self] title in
             guard let me = self else { return }
             DispatchQueue.main.async {
+                me.activityIndicator.stopAnimating()
                 me.alert(title: title)
             }
         }
